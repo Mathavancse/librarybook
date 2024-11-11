@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/customers_app/customerdetail.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2 style="font-family: sans-serif; font-weight: 900;font-size: 40px;">My Details</h2>
+    
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>NAME</strong></td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td><strong>AGE</strong></td>
+                <td>{{ user.AGE }}</td>
+            </tr>
+            <tr>
+                <td><strong>EMAIL</strong></td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td><strong>CONTACT</strong></td>
+                <td>{{ user.CONTACT }}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="button-container">
+        <a href="{% url 'customers' request.user %}">Back</a>
+        <a href="{% url 'customerdetailupdate' %}">Update My Details</a>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('.alert').fadeOut(4000);
+        });
+    </script>
+</body>
+</html>

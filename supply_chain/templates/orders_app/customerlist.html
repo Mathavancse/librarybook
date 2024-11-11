@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/orders_app/customerlist.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h3 style="font-family: sans-serif; font-weight: 900;font-size: 40px;">Customers</h3>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    <table>
+        <tr>
+            <th>S.No</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>CONTACT</th>
+            <th>DELETE CUSTOMER ACCOUNT</th>
+        </tr>
+        {% for user in data %}
+        <tr>
+            <td>{{ forloop.counter }}.</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{user.CONTACT}}</td>
+            <td><a href="{% url 'deletecustomer' user.id %}">Delete This Customer Account</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'order' %}" class="back-link">Back</a>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('.alert').fadeOut(4000);
+    });
+</script>

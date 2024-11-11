@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin-Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/orders_app/order.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1 style="font-family: sans-serif; font-weight: 900;font-size: 40px;margin-bottom: -7px;">Admin Page</h1>
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    
+    <div class="button-container">
+        <a class="customer" href="{% url 'customerlist' %}">Customers List</a>
+        <a href="/orders_app/insertorder/" class="add-order">Add Book</a>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                    <th>ISBN</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <td>{{ forloop.counter }}.</td>
+                    <td>{{ i.BOOK_TITLE }}</td>
+                    <td>{{ i.BOOK_AUTHOR }}</td>
+                    <td>{{ i.ISBN }}</td>
+                    <td>{{ i.BOOK_CATEGORY }}</td>
+                    <td><img src="{{ i.BOOK_IMAGE.url }}" alt="Book Image" class="book-image" style="width: 90px;height: 100px;"></td>
+                    <td><a href="{% url 'updateorder' i.id %}" class="btn btn-update">Update</a></td>
+                    <td><a href="{% url 'deleteorder' i.id %}" class="btn btn-delete">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+            $('.alert').fadeOut(4000);
+        });
+</script>

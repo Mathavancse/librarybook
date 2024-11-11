@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/authentication/createaccount.css' %}">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="wrapper">
+        <div class="sign">CREATE ACCOUNT</div>
+        <div class="input-type">
+            <input type="text" placeholder="name" name='username' required>
+            <i class="bx bxs-user-circle"></i>
+        </div>
+        <p style="color: red;font-weight: 600;font-family: serif;">{{error}}</p>
+
+        <div class="input-type">
+            <input type="email" placeholder="Email" name="email" required maxlength="30" style="text-transform: lowercase;">
+            <i class="bx bxs-envelope"></i>
+        </div>
+        
+
+        <div class="input-type">
+            <input type="number" placeholder="Age" name="age" required min="1" max="99" step="1" maxlength="2">
+            <i class="bx bxs-cake"></i>
+        </div>
+        
+
+        <div class="input-type">
+            <input type="tel" placeholder="Contact" name="contact" required >
+            <i class="bx bxs-phone"></i>
+        </div>
+
+        <div class="input-type">
+            <input type="password" placeholder="Password" name="password" required >
+            <i class="bx bxs-lock"></i>
+        </div>
+        <a href="login/">
+        <button type="submit">CREATE</button>
+       </a>
+        <div class="login-link">
+            Already have an account? <a href={% url 'login' %}>Login</a>
+        </div>
+        
+    </div>
+</form>
+</body>
+</html>

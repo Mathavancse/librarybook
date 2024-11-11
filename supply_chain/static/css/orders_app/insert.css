@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styles */
+form {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    max-width: 600px; /* Limit form width */
+    margin: 0 auto; /* Center the form */
+}
+
+/* Margin for form elements */
+div {
+    margin-bottom: 15px;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600; /* Slightly bolder */
+    color: black;
+    font-weight: 600;
+}
+
+/* Input Styles */
+input[type="text"],
+input[type="file"] {
+    width: 100%; /* Full-width input */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 17px;
+    transition: border-color 0.3s, box-shadow 0.3s; /* Added box-shadow transition */
+}
+
+input[type="text"]:focus,
+input[type="file"]:focus {
+
+    outline: none;
+    /* border-color: #007bff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); */
+}
+
+/* Button Styles */
+button[type="submit"],
+.back-button {
+    background-color: #007bff; /* Primary button color */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; /* Transform for button lift */
+    width: 100%; /* Full-width button */
+}
+
+/* Submit Button Hover */
+button[type="submit"]:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Back Button Styles */
+.back-button {
+    background-color: #6c757d;
+    width: 100px; /* Secondary button color */
+}
+
+.back-button:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}
+
+/* Back Button Focus Effect */
+.back-button:focus {
+    outline: none; /* Remove outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Blue glow effect on focus */
+}
+
+/* General Button Hover Effects */
+button:hover,
+.back-button:hover {
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}

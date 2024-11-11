@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        Login page
+        {% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/authentication/login.css' %}">
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <div class="wrapper">
+        <form action="" method="post" autocomplete="off">
+            {% csrf_token %}
+            {% block content %}
+            <h1>Login</h1>
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endif %}
+            <div class="input-box">
+                <input type="username" placeholder="name"
+                 name="username" required>
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder="password" 
+                 name="password" required>
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <p class="error">{{error}}</p>
+            <button type="submit" class="btn">
+                login
+            </button>
+            <div class="register-link">
+                <p>Don't have an account?<a href="/">Register</a></p>
+            </div>
+            {% endblock %}
+
+        </form>
+    </div>
+</body>
+</html>
+
+
+<script>
+    $(document).ready(function () {
+            $('.alert').fadeOut(4000);
+        });
+</script>

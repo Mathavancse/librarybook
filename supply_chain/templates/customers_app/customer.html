@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Library Books</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/customers_app/customer.css' %}">
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1 style="text-align: center;">WELCOME - {{ username | upper }} | THE LIBRARY BOOKS</h1>
+        <!-- <h1>Welcome - {{ username | upper }} | {{ some_date_variable | date:"F j, Y" }} | Available Books</h1> -->
+       
+    </div>
+    <div class="top-right">
+        <a href="{% url 'customerdetail' %}">My Detail</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+    
+    <table>
+        <thead>
+            <tr>
+                <th>S.NO</th>
+                <th>BOOK TITLE</th>
+                <th>BOOK AUTHOR</th>
+                <th>BOOK ISBN</th>
+                <th>BOOK CATEGORY</th>
+                <th>BOOK IMAGE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in user %}
+            <tr>
+                <td>{{ forloop.counter }}.</td>
+                <td>{{ i.BOOK_TITLE }}</td>
+                <td>{{ i.BOOK_AUTHOR }}</td>
+                <td>{{ i.ISBN }}</td>
+                <td>{{ i.BOOK_CATEGORY }}</td>
+                <td><img src="{{ i.BOOK_IMAGE.url }}" alt="book image" width="90px" height="100px"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+            $('.alert').fadeOut(4000);
+        });
+</script>

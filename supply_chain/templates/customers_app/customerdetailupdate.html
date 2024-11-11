@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update My Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/customers_app/customerdetailupdate.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2 style="font-family: sans-serif; font-weight: 900;font-size: 40px;">Update Your Details</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><input type="text" value="{{ user.username }}" name="username" required></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Age</strong></td>
+                        <td><input type="text" value="{{ user.AGE }}" name="age" required></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email</strong></td>
+                        <td><input type="email" value="{{ user.email }}" name="email" required></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contact</strong></td>
+                        <td><input type="text" value="{{ user.CONTACT }}" name="contact" required></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-container">
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+        <div class="link-container">
+            <a href="{% url 'customerdetail' %}" class="button back-button">Back</a>
+            <a href="{% url 'deleteaccount' %}" class="button delete-button">Delete My Account</a>
+        </div>
+    </div>
+</body>
+</html>

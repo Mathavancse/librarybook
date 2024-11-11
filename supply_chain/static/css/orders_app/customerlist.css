@@ -1,0 +1,83 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+/* Alert Styles */
+.alert {
+    width: 60%;
+    margin: 10px auto;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
+    transition: all 0.5s;
+    font-size: 1em;
+    font-weight: 700;
+    font-family: sans-serif;
+}
+
+/* Table Styles */
+table {
+    width: 70%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-weight:700 ;
+}
+
+table th{
+    text-align: center;
+}
+
+th {
+    background-color: #007bff; /* Blue background for header */
+    color: white; /* White text for header */
+
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Light gray background on row hover */
+}
+
+td a{
+    text-decoration: none;
+}
+/* Anchor Tag Styles */
+a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+}
+
+a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
+
+/* Back Link Styles */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    text-align: center; /* Center the link */
+}
+

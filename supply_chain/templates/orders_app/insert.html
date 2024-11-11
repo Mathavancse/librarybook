@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Book Data</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/orders_app/insert.css' %}">
+</head>
+<body>
+    <h1 style="font-family: sans-serif; font-weight: 900;font-size: 40px;">Admin Page - Insert Book</h1>
+    <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label>BOOK TITLE</label>
+            <input type="text" name="book_title" required>
+        </div>
+
+        <div>
+            <label>BOOK AUTHOR</label>
+            <input type="text" name="book_author" required>
+        </div>
+
+        <div>
+            <label>ISBN</label>
+            <input type="text" name="book_isbn" required>
+        </div>
+
+        <div>
+            <label>CATEGORY</label>
+            <input type="text" name="book_category" required>
+        </div>
+
+        <div>
+            <label>BOOK IMAGE</label>
+            <input type="file" name="book_image"  required>
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+    <button  onclick="window.location.href='/orders_app/orders/'" class="back-button">Back</button>
+
+</body>
+</html>

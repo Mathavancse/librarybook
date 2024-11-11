@@ -1,0 +1,153 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../../image/mountain3.jpeg");
+    /* background: linear-gradient(to left, blue, red); */
+    background-size:cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 420px;
+    color: #fff;
+    background: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px black;
+    backdrop-filter: blur(50px);
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    text-shadow: 3px 3px 10px rgba(125, 124, 124, 0.5);}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    color: #fff;
+    padding: 0 20px;
+    font-size: 18px;
+    transition: .6s;
+    text-transform: capitalize;
+}
+
+
+.input-box input::placeholder {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: #fff;
+}
+
+.input-box input:focus{
+    box-shadow: 0px 0px 15px 2px rgba(83, 83, 84, 0.853);
+    transform: scale(1.05);
+}
+
+
+
+.remember-forget a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forget a:hover{
+    color: #fff;
+    text-decoration: underline;
+}
+
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: #706e6e;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color:#fff;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wrapper .register-link{
+    font-size: 14.5px;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.register-link p a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover{
+    text-decoration: underline;
+}
+
+.error {
+    color: #e63946; /* Soft but noticeable red */
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+.alert {
+    width: 100%;                   
+    margin: 10px auto;             
+    padding: 15px 20px;            
+    text-align: center;            
+    font-weight: 500;           
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-size: 1em;                
+}
+
+.alert.alert-success {
+    background-color: #d4edda;     
+    color: #155724;                
+    border: 1px solid #c3e6cb;              
+    border-radius: 500px;
+    font-weight: 700;
+    font-family: sans-serif;      
+}
+
+
+
+
