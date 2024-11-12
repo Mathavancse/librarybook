@@ -23,6 +23,6 @@ urlpatterns = [
     path('customerdetail/',views.customerdetails,name='customerdetail'),
     path('customerdetailupdate/',views.customerdetailupdate,name='customerdetailupdate'),
     path('customerdeleted/',views.deleteyou,name='deleteaccount'),
-    path('openbook/<str:BOOK_TITLE>/', views.openbook, name='openbook'),
+    path('openbook/<str:BOOK_TITLE>/', views.study, name='book'),
 
 ]
