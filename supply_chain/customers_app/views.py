@@ -47,7 +47,8 @@ def study(request, BOOK_TITLE):
     order = Order_Tb.objects.get(BOOK_TITLE=BOOK_TITLE)  # Retrieve the order using id
     book_value = order.BOOK  # Get the BOOK field from that order instance
     book_title = order.BOOK_TITLE
-    return render(request, 'customers_app/openbook.html', {'book_value': book_value,'book_title':book_title})
+    book_author = order.BOOK_AUTHOR
+    return render(request, 'customers_app/openbook.html', {'book_value': book_value,'book_title':book_title,'book_author':book_author})
 
 
 

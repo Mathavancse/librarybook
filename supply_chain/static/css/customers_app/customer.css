@@ -91,3 +91,15 @@ tr:hover {
     font-size: 20px;
     font-family:sans-serif;
 }
+
+table tbody tr td a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+table tbody tr td a:hover {
+    color: #0056b3;
+}

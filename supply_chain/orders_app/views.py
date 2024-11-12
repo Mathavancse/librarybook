@@ -79,3 +79,10 @@ def deletecustomer(request,id):
     delcus.delete()
     messages.success(request, f' Successfully deleted  "{delcus.username}"  account.')
     return redirect('customerlist')
+
+def readbook(request,BOOK_TITLE):
+    order = Order_Tb.objects.get(BOOK_TITLE=BOOK_TITLE)  # Retrieve the order using id
+    book_value = order.BOOK
+    book_title = order.BOOK_TITLE
+    book_author = order.BOOK_AUTHOR
+    return render(request,'orders_app/book.html',{'book_value':book_value,'book_title':book_title,'book_author':book_author})

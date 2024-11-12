@@ -51,7 +51,7 @@
                 <td>{{ i.ISBN }}</td>
                 <td>{{ i.BOOK_CATEGORY }}</td>
                 <td><img src="{{ i.BOOK_IMAGE.url }}" alt="book image" width="90px" height="100px"></td>
-                <td><a href="{% url 'book' i.BOOK_TITLE %}">Open Book</a></td>
+                <td><a href="{% url 'book' i.BOOK_TITLE %}" style="font-weight: 700;">READ BOOK</a></td>
             </tr>
             {% endfor %}
         </tbody>

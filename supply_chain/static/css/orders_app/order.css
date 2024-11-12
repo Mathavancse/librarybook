@@ -140,3 +140,15 @@ tr:hover {
     height: auto;
     border-radius: 5px;
 }
+
+table tbody tr td a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+table tbody tr td a:hover {
+    color: #0056b3;
+}

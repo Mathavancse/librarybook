@@ -25,7 +25,7 @@ urlpatterns = [
     path('deleteorder/<int:id>/',views.deleteorder,name='deleteorder'),
     path('customerlist/',views.customerlist,name='customerlist'),
     path('deletecustomer/<int:id>/',views.deletecustomer,name='deletecustomer'),
-
+    path('readbook/<str:BOOK_TITLE>/',views.readbook,name='readbook')
 
 
 ]
