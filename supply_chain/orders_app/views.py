@@ -18,6 +18,7 @@ def insertorder(request):
         book_isbn = request.POST['book_isbn']
         book_category = request.POST['book_category']
         book_image = request.FILES['book_image']
+        book = request.POST['book']
 
         obj = Order_Tb()
         obj.BOOK_TITLE = book_title
@@ -25,6 +26,7 @@ def insertorder(request):
         obj.ISBN = book_isbn
         obj.BOOK_CATEGORY = book_category
         obj.BOOK_IMAGE = book_image
+        obj.BOOK = book
 
         obj.save()
 
@@ -42,11 +44,13 @@ def updateorder(request,id):
         book_author = request.POST['book_author']
         book_isbn = request.POST['book_isbn']
         book_category = request.POST['book_category']
+        book = request.POST['book']
 
         update.BOOK_TITLE = book_title
         update.BOOK_AUTHOR = book_author
         update.ISBN = book_isbn
         update.BOOK_CATEGORY = book_category
+        update.BOOK = book
 
         if 'book_image' in request.FILES:
             book_image = request.FILES['book_image']

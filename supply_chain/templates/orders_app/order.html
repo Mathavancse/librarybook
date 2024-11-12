@@ -36,6 +36,7 @@
                     <th>ISBN</th>
                     <th>Category</th>
                     <th>Image</th>
+                    <th>Read</th>
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
@@ -49,6 +50,7 @@
                     <td>{{ i.ISBN }}</td>
                     <td>{{ i.BOOK_CATEGORY }}</td>
                     <td><img src="{{ i.BOOK_IMAGE.url }}" alt="Book Image" class="book-image" style="width: 90px;height: 100px;"></td>
+                    <td></td>
                     <td><a href="{% url 'updateorder' i.id %}" class="btn btn-update">Update</a></td>
                     <td><a href="{% url 'deleteorder' i.id %}" class="btn btn-delete">Delete</a></td>
                 </tr>

@@ -9,3 +9,4 @@ class Order_Tb(models.Model):
     ISBN = models.CharField(max_length=100)
     BOOK_CATEGORY = models.CharField(max_length=100)
     BOOK_IMAGE = models.ImageField(null =True ,upload_to='outimage/')
+    BOOK = models.TextField(default='default_value')
