@@ -43,8 +43,8 @@ def deleteyou(request):
 
 from orders_app.models import Order_Tb
 
-def study(request, BOOK_TITLE):
-    order = Order_Tb.objects.get(BOOK_TITLE=BOOK_TITLE)  # Retrieve the order using id
+def study(request, id):
+    order = Order_Tb.objects.get(id=id)  # Retrieve the order using id
     book_value = order.BOOK  # Get the BOOK field from that order instance
     book_title = order.BOOK_TITLE
     book_author = order.BOOK_AUTHOR

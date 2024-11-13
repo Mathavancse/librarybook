@@ -80,8 +80,8 @@ def deletecustomer(request,id):
     messages.success(request, f' Successfully deleted  "{delcus.username}"  account.')
     return redirect('customerlist')
 
-def readbook(request,BOOK_TITLE):
-    order = Order_Tb.objects.get(BOOK_TITLE=BOOK_TITLE)  # Retrieve the order using id
+def readbook(request,id):
+    order = Order_Tb.objects.get(id=id)  # Retrieve the order using id
     book_value = order.BOOK
     book_title = order.BOOK_TITLE
     book_author = order.BOOK_AUTHOR
