@@ -3,6 +3,10 @@ from authentication.models import User
 from django.contrib.auth import authenticate,login,logout
 from authentication.models import User
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+
+
 # Create your views here.
 # def one(request):
 #     return render(request,'authentication/one.html')
@@ -102,3 +106,47 @@ def adminpage(request):
     return render(request,'authentication/adminlogin.html')
 
 
+def emailpage(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        print("Email:", email)
+
+        if User.objects.filter(email=email).exists():
+            user = User.objects.get(email=email)
+            print('User exists')
+
+            try:
+                send_mail(
+                    subject="Reset Your Password",
+                    message = f"Hello {user.username}, To reset your password, click on the given link: http://127.0.0.1:8000/newpasswordpage/{user.username}/",
+                    from_email=settings.EMAIL_HOST_USER,
+                    recipient_list=[email],
+                    fail_silently=False
+                )
+                print("Email sent successfully!")
+                messages.success(request,f' "{user.username}"  Link Send Your Email Successfully')
+            except Exception as e:
+                print(f"Error sending email: {e}")
+
+    return render(request, 'authentication/emailpage.html')
+
+
+def newpassword(request,name):
+    username=User.objects.get(username=name)
+    print("userid",username)
+    if request.method == 'POST':
+        pass1 = request.POST['pass1']
+        pass2 = request.POST['pass2']
+
+        print("pass1 and pass2", pass1 ,"and" ,pass2)
+
+        if pass1 == pass2:
+            username.set_password(pass1)  # This method securely sets the password
+            username.save()  # Save the user with the new password
+            messages.success(request,f' "{username}" Password Changed Successfully')
+            return redirect('login') 
+
+        else:
+            return render(request, 'authentication/newpassword.html')
+
+    return render (request,'authentication/newpassword.html')

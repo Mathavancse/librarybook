@@ -151,3 +151,19 @@ body {
 
 
 
+.forgot {
+    display: block;
+    text-align: right;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.1s ease;
+}
+
+.forgot:hover {
+    color: #c3e6cb; /* Soft green hover effect */
+    text-decoration: underline;
+    /* transform: scale(1.05);  */
+}
