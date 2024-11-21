@@ -10,40 +10,39 @@ from django.conf import settings
 # Create your views here.
 # def one(request):
 #     return render(request,'authentication/one.html')
-
 def createaccount(request):
-
     if request.method == "POST":
+        user_mail = User.objects.filter(email=request.POST['email'])
+        user_name = User.objects.filter(username=request.POST['username'])
 
-        user_check = User.objects.filter(email=request.POST['email'])
-        
-
-        if user_check.exists():
-
+        if user_mail.exists():
             context = {
-                'error':"*mail already exists"
+                'err': "*Email already exists"
             }
+            return render(request, 'authentication/createacount.html', context)
 
-            return render(request,'authentication/createacount.html',context)
+        elif user_name.exists():
+            context = {
+                'error': "*Username already exists"
+            }
+            return render(request, 'authentication/createacount.html', context)
 
         else:
-
             new_user = User(
-            username=request.POST['username'],
-            CONTACT=request.POST['contact'],
-            AGE=request.POST['age'],
-            email=request.POST['email'],
+                username=request.POST['username'],
+                CONTACT=request.POST['contact'],
+                AGE=request.POST['age'],
+                email=request.POST['email'],
             )
 
             new_user.set_password(request.POST['password'])
-
             new_user.save()
 
-            messages.success(request,f' "{new_user}"  Your Account Created Successfully')
+            messages.success(request, f'"{new_user.username}" Your Account Created Successfully')
 
             return redirect('login')
 
-    return render(request,'authentication/createacount.html')
+    return render(request, 'authentication/createacount.html')
 
 def loginpage(request):
 
@@ -92,7 +91,6 @@ def adminpage(request):
                 login(request,user_admin)
 
                 messages.success(request,' "Admin"  Login Successfully')
-
 
                 return redirect('order')
 
