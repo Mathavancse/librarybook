@@ -15,12 +15,13 @@ def createaccount(request):
 
     if request.method == "POST":
 
-        user_check = User.objects.filter(username=request.POST['username'])
+        user_check = User.objects.filter(email=request.POST['email'])
+        
 
         if user_check.exists():
 
             context = {
-                'error':"*Name already exists"
+                'error':"*mail already exists"
             }
 
             return render(request,'authentication/createacount.html',context)
