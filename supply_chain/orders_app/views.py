@@ -2,13 +2,16 @@ from django.shortcuts import render,redirect
 from orders_app.models import Order_Tb
 from authentication.models import User
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required(login_url="/adminpage/")
 def order(request):
     data = Order_Tb.objects.all()
     return render(request,'orders_app/order.html',{"data":data})
 
+@login_required(login_url="/adminpage/")
 def insertorder(request):
 
     if request.method == "POST":
@@ -37,6 +40,7 @@ def insertorder(request):
     return render(request,'orders_app/insert.html')
 
 
+@login_required(login_url="/adminpage/")
 def updateorder(request,id):
     update = Order_Tb.objects.get(id = id)
     if request.method == "POST":
@@ -64,22 +68,26 @@ def updateorder(request,id):
 
     return render(request,'orders_app/update.html',{'data':update})
 
+@login_required(login_url="/adminpage/")
 def deleteorder(request,id):
     dell = Order_Tb.objects.get(id = id)
     dell.delete()
     messages.success(request,f' "{dell.BOOK_TITLE}"  Book Successfully Deleted.')
     return redirect('order')
 
+@login_required(login_url="/adminpage/")
 def customerlist(request):
     alldata=User.objects.all()
     return render (request,'orders_app/customerlist.html',{'data':alldata})
 
+@login_required(login_url="/adminpage/")
 def deletecustomer(request,id):
     delcus=User.objects.get(id = id)
     delcus.delete()
     messages.success(request, f' Successfully deleted  "{delcus.username}"  account.')
     return redirect('customerlist')
 
+@login_required(login_url="/adminpage/")
 def readbook(request,id):
     order = Order_Tb.objects.get(id=id)  # Retrieve the order using id
     book_value = order.BOOK

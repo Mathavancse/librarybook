@@ -2,17 +2,21 @@ from django.shortcuts import render,redirect,get_object_or_404
 from orders_app.models import Order_Tb
 from authentication.models import User
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required(login_url="/loginpage/")
 def customer(request,username):
     user = Order_Tb.objects.all()
     return render(request,'customers_app/customer.html',{'username':username,"user":user})
 
+@login_required(login_url="/loginpage/")
 def customerdetails(request):
     user=request.user
 
     return  render(request,'customers_app/customerdetail.html',{'user':user})
 
+@login_required(login_url="/loginpage/")
 def customerdetailupdate(request):
     update=request.user
 
@@ -35,6 +39,7 @@ def customerdetailupdate(request):
 
     return render(request,'customers_app/customerdetailupdate.html',{'user':update})
 
+@login_required(login_url="/loginpage/")
 def deleteyou(request):
     delmy=request.user
     delmy.delete()
@@ -43,6 +48,7 @@ def deleteyou(request):
 
 from orders_app.models import Order_Tb
 
+@login_required(login_url="/loginpage/")
 def study(request, id):
     order = Order_Tb.objects.get(id=id)  # Retrieve the order using id
     book_value = order.BOOK  # Get the BOOK field from that order instance

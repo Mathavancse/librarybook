@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from orders_app import views
+# from django.contrib.auth.decorators import login_required
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('orders/',views.order,name='order'),
