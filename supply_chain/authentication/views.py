@@ -103,6 +103,11 @@ def adminpage(request):
 
     return render(request,'authentication/adminlogin.html')
 
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.http import urlsafe_base64_encode,urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
 
 def emailpage(request):
     if request.method == 'POST':
@@ -112,11 +117,19 @@ def emailpage(request):
         if User.objects.filter(email=email).exists():
             user = User.objects.get(email=email)
             print('User exists')
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.id))
+            current_site = get_current_site(request) #127.0.0.1:8000
+            domain = current_site.domain
 
             try:
                 send_mail(
                     subject="Reset Your Password",
-                    message = f"Hello {user.username}, To reset your password, click on the given link: http://127.0.0.1:8000/newpasswordpage/{user.username}/",
+                    message = render_to_string('resetpasswordemail.html',{
+                        "domain":domain,
+                        "uid" : uid,
+                        "token":token
+                    }),
                     from_email=settings.EMAIL_HOST_USER,
                     recipient_list=[email],
                     fail_silently=False
@@ -129,22 +142,33 @@ def emailpage(request):
     return render(request, 'authentication/emailpage.html')
 
 
-def newpassword(request,name):
-    username=User.objects.get(username=name)
-    print("userid",username)
-    if request.method == 'POST':
-        pass1 = request.POST['pass1']
-        pass2 = request.POST['pass2']
+def newpassword(request, uidb64, token):
+    try:
+        # Decode the user ID from uidb64
+        uid = urlsafe_base64_decode(uidb64)
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
 
-        print("pass1 and pass2", pass1 ,"and" ,pass2)
+    if user is not None and default_token_generator.check_token(user, token):
+        if request.method == 'POST':
+            pass1 = request.POST.get('pass1')
+            pass2 = request.POST.get('pass2')
 
-        if pass1 == pass2:
-            username.set_password(pass1)  # This method securely sets the password
-            username.save()  # Save the user with the new password
-            messages.success(request,f' "{username}" Password Changed Successfully')
-            return redirect('login') 
+            if pass1 == pass2:
+                user.set_password(pass1)  # Securely set the new password
+                user.save()
+                messages.success(request, f'Password for "{user.username}" changed successfully!')
+                return redirect('login')  # Redirect to login page after successful password change
+            else:
+                messages.error(request, "Passwords do not match. Please try again.")
+                return render(request, 'authentication/newpassword.html', {"validlink": True})
+        
+        # Render form for password reset
+        return render(request, 'authentication/newpassword.html', {"validlink": True})
+    else:
+        # Invalid token or link
+        messages.error(request, "The password reset link is invalid, expired, or already used.")
+        return render(request, 'authentication/newpassword.html', {"validlink": False})
 
-        else:
-            return render(request, 'authentication/newpassword.html')
 
-    return render (request,'authentication/newpassword.html')
