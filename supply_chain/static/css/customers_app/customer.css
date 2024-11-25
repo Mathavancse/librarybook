@@ -103,3 +103,7 @@ table tbody tr td a {
 table tbody tr td a:hover {
     color: #0056b3;
 }
+
+.top-right a.log {
+    background-color: rgb(203, 29, 29);
+}

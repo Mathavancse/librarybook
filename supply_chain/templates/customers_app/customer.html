@@ -20,7 +20,7 @@
     </div>
     <div class="top-right">
         <a href="{% url 'customerdetail' %}">My Detail</a>
-        <a href="{% url 'logout' %}">Logout</a>
+        <a class="log" href="{% url 'logout' %}">Logout</a>
     </div>
     {% if messages %}
     {% for message in messages %}
