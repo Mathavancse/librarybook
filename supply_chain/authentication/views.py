@@ -55,11 +55,9 @@ def loginpage(request):
 
             login(request,user)
 
-            request.session['username'] = user.username
-
             messages.success(request,f' "{user.username}"  Login Successfully')
 
-            return redirect("customers",username=user.username)
+            return redirect("customers")
 
         else:
             context={

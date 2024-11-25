@@ -7,13 +7,15 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 @login_required(login_url="/loginpage/")
-def customer(request,username):
+def customer(request):
+    my_name=request.user
+
     all_user = Order_Tb.objects.all()
 
     paginator = Paginator(all_user,1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request,'customers_app/customer.html',{'username':username,"page_obj":page_obj,"start_index": page_obj.start_index() - 1})
+    return render(request,'customers_app/customer.html',{"my_name":my_name,"page_obj":page_obj,"start_index": page_obj.start_index() - 1})
 
 @login_required(login_url="/loginpage/")
 def customerdetails(request):

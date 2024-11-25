@@ -19,7 +19,7 @@ from django.urls import path
 from customers_app import views
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('customers/<str:username>/',views.customer,name='customers'),
+    path('customers/',views.customer,name='customers'),
     path('customerdetail/',views.customerdetails,name='customerdetail'),
     path('customerdetailupdate/',views.customerdetailupdate,name='customerdetailupdate'),
     path('customerdeleted/',views.deleteyou,name='deleteaccount'),
