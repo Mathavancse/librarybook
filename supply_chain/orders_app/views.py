@@ -3,13 +3,19 @@ from orders_app.models import Order_Tb
 from authentication.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 # Create your views here.
 
 @login_required(login_url="/adminpage/")
 def order(request):
-    data = Order_Tb.objects.all()
-    return render(request,'orders_app/order.html',{"data":data})
+    all_data = Order_Tb.objects.all()
+
+    paginator = Paginator(all_data,4)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request,'orders_app/order.html',{"page_obj":page_obj,"start_index": page_obj.start_index() - 1})
 
 @login_required(login_url="/adminpage/")
 def insertorder(request):
