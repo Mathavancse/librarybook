@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 def order(request):
     all_data = Order_Tb.objects.all()
 
-    paginator = Paginator(all_data,4)
+    paginator = Paginator(all_data,1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

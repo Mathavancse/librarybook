@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 def customer(request,username):
     all_user = Order_Tb.objects.all()
 
-    paginator = Paginator(all_user,4)
+    paginator = Paginator(all_user,1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request,'customers_app/customer.html',{'username':username,"page_obj":page_obj,"start_index": page_obj.start_index() - 1})
