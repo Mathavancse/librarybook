@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
@@ -45,29 +48,37 @@ def createaccount(request):
 
     return render(request, 'authentication/createacount.html')
 
+
+
+from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib import messages
+from django.shortcuts import render, redirect
+
+User = get_user_model()
+
 def loginpage(request):
-
     if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
 
-        user = authenticate(username = request.POST['username'],password = request.POST['password'])
+        # Check if the username exists
+        if not User.objects.filter(username=username).exists():
+            messages.error(request, "* User Does Not Exist *")
+            return render(request, 'authentication/login.html')
 
+        # Authenticate the user
+        user = authenticate(username=username, password=password)
         if user is not None:
-
-            login(request,user)
-
-            messages.success(request,f' "{user.username}"  Login Successfully')
-
+            login(request, user)
+            messages.success(request, f'"{user.username}" Login Successfully')
             return redirect("customers")
-
         else:
-            context={
-                "error":"* Incorrect Username or Password *"
-            }
+            messages.warning(request, "* Incorrect Password *")
+            return render(request, 'authentication/login.html')
+
+    return render(request, 'authentication/login.html')
 
 
-            return render(request,'authentication/login.html',context)
-
-    return render(request,'authentication/login.html')
 
 def logoutpage(request):
     username = request.user.username  # Get the username before logging out

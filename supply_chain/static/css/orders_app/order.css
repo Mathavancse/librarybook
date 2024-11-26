@@ -30,10 +30,13 @@ h1 {
 .button-container {
     display: flex;
     justify-content: flex-end; /* Aligns items to the right */
-    margin: 20px 0;
 }
 
-.customer, .add-order {
+.button-container a.logout{
+    background-color: rgb(225, 79, 79);
+
+}
+.customer, .add-order, .logout {
     display: inline-block;
     padding: 10px 15px;
     margin-left: 10px; /* Space between buttons */
@@ -62,6 +65,9 @@ h1 {
     color: white;
 }
 
+.logout:hover{
+    color: white;
+}
 /* Table Styles */
 .table-container {
     margin: 20px 0;
@@ -115,6 +121,7 @@ tr:hover {
 
 .btn.btn-update {
     background-color: #28a745;
+    color: white;
    
 }
 
@@ -125,6 +132,8 @@ tr:hover {
 
 .btn.btn-delete {
     background-color: #dc3545;
+    color: white;
+
 
 }
 

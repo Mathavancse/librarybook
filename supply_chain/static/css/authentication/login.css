@@ -149,8 +149,6 @@ body {
 }
 
 
-
-
 .forgot {
     display: block;
     text-align: right;
@@ -167,3 +165,13 @@ body {
     text-decoration: underline;
     /* transform: scale(1.05);  */
 }
+
+.alert.alert-error {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Slightly darker red border */
+    border-radius: 500px;
+    font-weight: 700;
+    font-family: sans-serif;  
+}
+

@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth import authenticate,login,logout
 from orders_app.models import Order_Tb
 from authentication.models import User
 from django.contrib import messages
@@ -85,6 +86,12 @@ def deleteorder(request,id):
 def customerlist(request):
     alldata=User.objects.all()
     return render (request,'orders_app/customerlist.html',{'data':alldata})
+
+def adminlogout(request):
+    username = request.user.username  # Get the username before logging out
+    logout(request)
+    messages.success(request, f' "{username}"  Logout successfully.')
+    return redirect('login')
 
 @login_required(login_url="/adminpage/")
 def deletecustomer(request,id):
