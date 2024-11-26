@@ -146,7 +146,7 @@ def emailpage(request):
                     fail_silently=False
                 )
                 print("Email sent successfully!")
-                messages.success(request,f' "{user.username}"  Link Send Your Email Successfully')
+                messages.success(request,f'Link Send Your Gmail')
             except Exception as e:
                 print(f"Error sending email: {e}")
 
