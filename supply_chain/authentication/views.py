@@ -50,12 +50,6 @@ def createaccount(request):
 
 
 
-from django.contrib.auth import authenticate, login, get_user_model
-from django.contrib import messages
-from django.shortcuts import render, redirect
-
-User = get_user_model()
-
 def loginpage(request):
     if request.method == "POST":
         username = request.POST['username']
@@ -169,7 +163,7 @@ def newpassword(request, uidb64, token):
             if pass1 == pass2:
                 user.set_password(pass1)  # Securely set the new password
                 user.save()
-                messages.success(request, f'Password for "{user.username}" changed successfully!')
+                messages.success(request, f"Password changed successfully!")
                 return redirect('login')  # Redirect to login page after successful password change
             else:
                 messages.error(request, "Passwords do not match. Please try again.")
