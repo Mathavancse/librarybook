@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'authentication',
     'customers_app',
     'orders_app',
-    'bootstrap5'
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

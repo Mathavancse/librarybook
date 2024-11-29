@@ -8,3 +8,4 @@ class User(AbstractUser):
     AGE = models.IntegerField(default=0)
     GENDER = models.CharField(max_length=20)
     
+

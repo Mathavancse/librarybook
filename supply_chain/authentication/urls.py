@@ -25,8 +25,7 @@ urlpatterns = [
     path('adminpage/',views.adminpage,name='admin'),
     path('logout/',views.logoutpage,name='logout'),
     path('emailpage/',views.emailpage,name='emailpage'),
-    path('newpasswordpage/<uidb64>/<token>',views.newpassword,name='newpassword')
-
+    path('newpasswordpage/<uidb64>/<token>',views.newpassword,name='newpassword'),
 
 
 ]

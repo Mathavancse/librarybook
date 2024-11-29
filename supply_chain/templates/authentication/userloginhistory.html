@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Login History</title>
+</head>
+<body>
+    <h1>User Login History</h1>
+
+    <!-- Debugging line to print login_history -->
+    <p>{{ login_history }}</p> 
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>IP Address</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in login_history %}
+            <tr>
+                <td>{{ record.user.username }}</td>
+                <td>{{ record.ip_address }}</td>
+                <td>{{ record.timestamp }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No login history found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

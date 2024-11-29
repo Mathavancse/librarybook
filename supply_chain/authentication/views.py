@@ -10,7 +10,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.shortcuts import render, redirect
 
-
 # Create your views here.
 # def one(request):
 #     return render(request,'authentication/one.html')
@@ -176,4 +175,102 @@ def newpassword(request, uidb64, token):
         messages.error(request, "The password reset link is invalid, expired, or already used.")
         return render(request, 'authentication/newpassword.html', {"validlink": False})
 
+
+
+
+
+
+
+
+
+
+
+
+# only the link exists for five minutes
+
+# from django.utils.timezone import now
+# import time
+
+# def emailpage(request):
+#     if request.method == 'POST':
+#         email = request.POST.get('email')
+#         print("Email entered:", email)
+
+#         if User.objects.filter(email=email).exists():
+#             user = User.objects.get(email=email)
+#             print('User exists')
+#             token = default_token_generator.make_token(user)
+#             uid = urlsafe_base64_encode(force_bytes(user.id))
+#             timestamp = int(time.time())  # Current timestamp in seconds
+#             current_site = get_current_site(request)
+#             domain = current_site.domain
+
+#             try:
+#                 send_mail(
+#                     subject="Reset Your Password",
+#                     message=render_to_string('resetpasswordemail.html', {
+#                         "domain": domain,
+#                         "uid": uid,
+#                         "token": token,
+#                         "timestamp": timestamp  # Include the timestamp
+#                     }),
+#                     from_email=settings.EMAIL_HOST_USER,
+#                     recipient_list=[email],
+#                     fail_silently=False
+#                 )
+#                 print("Email sent successfully!")
+#                 messages.success(request, f'Password reset link sent to your email.')
+#             except Exception as e:
+#                 print(f"Error sending email: {e}")
+#                 messages.error(request, f"Failed to send email. Please try again later.")
+
+#     return render(request, 'authentication/emailpage.html')
+
+
+
+
+# import time
+
+# def newpassword(request, uidb64, token, timestamp):
+#     try:
+#         # Decode the user ID from uidb64
+#         uid = force_str(urlsafe_base64_decode(uidb64))
+#         user = User.objects.get(pk=uid)
+#     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+#         user = None
+
+#     # Check if the token and timestamp are valid
+#     if user is not None and default_token_generator.check_token(user, token):
+#         current_time = int(time.time())  # Current timestamp
+#         token_age = current_time - int(timestamp)  # Calculate the token age in seconds
+
+#         if token_age > 300:  # 300 seconds = 5 minutes
+#             messages.error(request, "The password reset link has expired.")
+#             return render(request, 'authentication/newpassword.html', {"validlink": False})
+
+#         if request.method == 'POST':
+#             pass1 = request.POST.get('pass1')
+#             pass2 = request.POST.get('pass2')
+
+#             if pass1 == pass2:
+#                 user.set_password(pass1)  # Securely set the new password
+#                 user.save()
+#                 messages.success(request, "Password changed successfully!")
+#                 return redirect('login')  # Redirect to login page after successful password change
+#             else:
+#                 messages.error(request, "Passwords do not match. Please try again.")
+#                 return render(request, 'authentication/newpassword.html', {"validlink": True})
+
+#         # Render form for password reset
+#         return render(request, 'authentication/newpassword.html', {"validlink": True})
+#     else:
+#         # Invalid token or link
+#         messages.error(request, "The password reset link is invalid or already used.")
+#         return render(request, 'authentication/newpassword.html', {"validlink": False})
+
+
+# <p>Click the link below to reset your password. This link is valid for 5 minutes only:</p>
+# <a href="http://{{ domain }}/reset-password/{{ uid }}/{{ token }}/{{ timestamp }}">Reset Password</a>
+
+# path('newpasswordpage/<uidb64>/<token>/<timestamp>', views.newpassword, name='newpassword'),
 
